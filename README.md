@@ -56,5 +56,5 @@ O7265XHAG7DR3FDN2XPX4HZGCWDGCI7HPYEJ5Z3TQ43G6UC27I4LK7JM7E
 
 ## Acknowledgement
 
-This project was derived from this project, but now shares almost nothing in common with it:
+This project was derived from the project linked below, but was almost completely re-written:
 https://github.com/TeneoPython01/algorand_txn_csv_exporter
