@@ -53,3 +53,8 @@ This tool is provided as-is with no warranty under the MIT License.  If using fo
 
 If you find it useful, feel free to shoot me an ALGO or two (or 10,000 ... I'm not picky):
 O7265XHAG7DR3FDN2XPX4HZGCWDGCI7HPYEJ5Z3TQ43G6UC27I4LK7JM7E
+
+## Acknowledgement
+
+This project was derived from (although it's not almost completely different) this project:
+https://github.com/TeneoPython01/algorand_txn_csv_exporter
