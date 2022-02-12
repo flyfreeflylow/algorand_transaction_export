@@ -29,7 +29,7 @@ pip install requests
 * ID (optional) - Transaction ID for final settlement (see below)
 * Description (optional) - Any notes
 
-Many transactions involve multiple events.  For instance, if you subscribe to and buy an ASA, there's the subscription event, a fee-payment event, payment for the token, receipt of the token, and then collection of residuals.  This tool attempts to identify and roll up these four events into a single line, as they're really all part of the same transaction.
+Many transactions involve multiple events.  For instance, if you subscribe to and buy an ASA, there's the subscription event, a fee-payment event, payment for the token, receipt of the token, and then collection of residuals.  This tool will report those five events as three transactions: subscribe, purchase, collection of residuals.
 
 At the end of the run it will either generate an error and stop, or output what it thinks your current balance is based on the transactions it saw.  This might end up being profit/loss seen since the first transaction it saw if for some reason the initial funding transaction for your wallet isn't seen.  This value is meant as a sanity check.
 
