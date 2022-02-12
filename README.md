@@ -41,7 +41,7 @@ Sometimes, in rare cases, the quantity for an ASA bought will be off by a very s
 
 I've not done everything there is to do on Yieldly, so it might mis-identify some things.  In particular, detecting and correctly labeling rewards is awkward.  It works for me, but might not always for you if you're doing something that looks different from what I encountered.
 
-Staking Yieldly is reported as a transfer out of the wallet.  (That's actually how they look in the transactions: A transfer to some wallet address.  Weird...)  For me, the Yieldly and ALGO rewards are correctly identified though.
+Staking Yieldly is reported as a transfer out of the wallet.  (That's actually how they look in the transactions: A transfer to some wallet address.  Weird...)  For me, the Yieldly and ALGO rewards are correctly identified.
 
 It always generates the report for all transactions - no date bounding options have been included.  I'll likely add that in at some point but haven't yet.
 
