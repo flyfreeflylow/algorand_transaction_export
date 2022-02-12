@@ -47,7 +47,7 @@ It always generates the report for all transactions - no date bounding options h
 
 ## Disclaimer
 
-This tool is provideed as-is with no warranty under the MIT License.  If using for official purposes (e.g. tax reporting - the layout above is compatible with cryptotaxcalculator.io) YOU ARE EXPECTED TO VERIFY EACH AND EVERY TRANSACTION YOURSELF.  What you report on your taxes, or any other official documentation, is entirely your responsibility.
+This tool is provided as-is with no warranty under the MIT License.  If using for official purposes (e.g. tax reporting - the layout above is compatible with cryptotaxcalculator.io) YOU ARE EXPECTED TO VERIFY EACH AND EVERY TRANSACTION YOURSELF.  What you report on your taxes, or any other official documentation, is entirely your responsibility.
 
 ## Support
 
