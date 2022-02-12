@@ -35,17 +35,19 @@ At the end of the run it will either generate an error and stop, or output what 
 
 ## Known Issues or Potential Issues
 
-I tested this using my wallet (not the one below), and I've done no transfers FROM my wallet to another ALGO wallet.  I've only transferred funds in, bought and sold ASAs, and used Yieldly.  I'm not sure what a transfer out looks like, so it might not properly identify those.
+I tested this using my wallet (not the one below), and I've done no transfers FROM my wallet to another ALGO wallet.  I've only transferred funds in, bought and sold ASAs, and used Yieldly.  I'm not sure what a transfer out looks like (unless it looks just like staking Yieldly), so it might not properly identify those.
 
 Sometimes, in rare cases, the quantity for an ASA bought will be off by a very small amount - the amount of one fee.  In the handful of ASA buys/sells that I have, this happened to me once.  I just corrected that one by hand in the output after being unable to figure out what it had missed.
 
 I've not done everything there is to do on Yieldly, so it might mis-identify some things.  In particular, detecting and correctly labeling rewards is awkward.  It works for me, but might not always for you if you're doing something that looks different from what I encountered.
 
+Staking Yieldly is reported as a transfer out of the wallet.  (That's actually how they look in the transactions: A transfer to some wallet address.  Weird...)  For me, the Yieldly and ALGO rewards are correctly identified though.
+
 It always generates the report for all transactions - no date bounding options have been included.  I'll likely add that in at some point but haven't yet.
 
 ## Disclaimer
 
-This tool is provideed as-is with no warranty.  If using for official purposes (e.g. tax reporting - the layout above is compatible with cryptotaxcalculator.io) YOU ARE EXPECTED TO VERIFY EACH AND EVERY TRANSACTION YOURSELF.  What you report on your taxes, or any other official documentation, is entirely your responsibility.
+This tool is provideed as-is with no warranty under the MIT License.  If using for official purposes (e.g. tax reporting - the layout above is compatible with cryptotaxcalculator.io) YOU ARE EXPECTED TO VERIFY EACH AND EVERY TRANSACTION YOURSELF.  What you report on your taxes, or any other official documentation, is entirely your responsibility.
 
 ## Support
 
