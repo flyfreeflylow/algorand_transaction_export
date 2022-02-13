@@ -42,7 +42,7 @@ with open(filename, 'w') as f:
             # Need to check and process the current tx
             if tx_done:
                 # Record it
-                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(current_tx["timestamp"]))
+                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(int(current_tx["timestamp"])))
                 print('"'+prettytime+'","'+current_tx["type"]+'","'+current_tx["currency"]+'",'+str(current_tx["amount"])+',"'+current_tx["from_currency"]+'",'+str(current_tx["from_amount"])+',"'+current_tx["fee_currency"]+'",'+str(current_tx["fee_amount"])+',"'+current_tx["from"]+'","'+current_tx["to"]+'","'+current_tx["tx"]+'","'+current_tx["notes"]+'"', file=f)
             elif check_asa_sell and current_tx["from_amount"]==0:
                 # Wallet Fee
@@ -52,7 +52,7 @@ with open(filename, 'w') as f:
                 current_tx["from_amount"] = 0
                 current_tx["type"] = "Wallet Fee"
                 balance -= current_tx["fee_amount"]
-                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(current_tx["timestamp"]))
+                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(int(current_tx["timestamp"])))
                 print('"'+prettytime+'","'+current_tx["type"]+'","'+current_tx["currency"]+'",'+str(current_tx["amount"])+',"'+current_tx["from_currency"]+'",'+str(current_tx["from_amount"])+',"'+current_tx["fee_currency"]+'",'+str(current_tx["fee_amount"])+',"'+current_tx["from"]+'","'+current_tx["to"]+'","'+current_tx["tx"]+'","'+current_tx["notes"]+'"', file=f)
             elif check_asa_sell:
                 # Delegation/Pool/Farm
@@ -62,7 +62,7 @@ with open(filename, 'w') as f:
                 current_tx["from_amount"] = 0
                 current_tx["type"] = "Transfer"
                 balance -= current_tx["fee_amount"]
-                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(current_tx["timestamp"]))
+                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(int(current_tx["timestamp"])))
                 print('"'+prettytime+'","'+current_tx["type"]+'","'+current_tx["currency"]+'",'+str(current_tx["amount"])+',"'+current_tx["from_currency"]+'",'+str(current_tx["from_amount"])+',"'+current_tx["fee_currency"]+'",'+str(current_tx["fee_amount"])+',"'+current_tx["from"]+'","'+current_tx["to"]+'","'+current_tx["tx"]+'","'+current_tx["notes"]+'"', file=f)
             elif check_asa_buy:
                 print(" ")
@@ -72,7 +72,7 @@ with open(filename, 'w') as f:
             else:
                 # Just record it
                 balance -= current_tx["fee_amount"]
-                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(current_tx["timestamp"]))
+                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(int(current_tx["timestamp"])))
                 print('"'+prettytime+'","'+current_tx["type"]+'","'+current_tx["currency"]+'",'+str(current_tx["amount"])+',"'+current_tx["from_currency"]+'",'+str(current_tx["from_amount"])+',"'+current_tx["fee_currency"]+'",'+str(current_tx["fee_amount"])+',"'+current_tx["from"]+'","'+current_tx["to"]+'","'+current_tx["tx"]+'","'+current_tx["notes"]+'"', file=f)
 
             looper = False
@@ -80,7 +80,7 @@ with open(filename, 'w') as f:
 
         for row in r:
             if tx_done:
-                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(current_tx["timestamp"]))
+                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(int(current_tx["timestamp"])))
                 print('"'+prettytime+'","'+current_tx["type"]+'","'+current_tx["currency"]+'",'+str(current_tx["amount"])+',"'+current_tx["from_currency"]+'",'+str(current_tx["from_amount"])+',"'+current_tx["fee_currency"]+'",'+str(current_tx["fee_amount"])+',"'+current_tx["from"]+'","'+current_tx["to"]+'","'+current_tx["tx"]+'","'+current_tx["notes"]+'"', file=f)
                 current_tx = copy.deepcopy({"timestamp":"", "type":"", "currency":"", "amount":0, "from_currency":"", "from_amount":0, "fee_currency":"ALGO", "fee_amount": 0, "from":"", "to":"", "tx":"", "notes":""})
                 tx_done = False
@@ -108,7 +108,7 @@ with open(filename, 'w') as f:
                 current_tx["from_amount"] = 0
                 current_tx["type"] = "Transfer"
                 balance -= current_tx["fee_amount"]
-                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(current_tx["timestamp"]))
+                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(int(current_tx["timestamp"])))
                 print('"'+prettytime+'","'+current_tx["type"]+'","'+current_tx["currency"]+'",'+str(current_tx["amount"])+',"'+current_tx["from_currency"]+'",'+str(current_tx["from_amount"])+',"'+current_tx["fee_currency"]+'",'+str(current_tx["fee_amount"])+',"'+current_tx["from"]+'","'+current_tx["to"]+'","'+current_tx["tx"]+'","'+current_tx["notes"]+'"', file=f)
                 current_tx = copy.deepcopy({"timestamp":"", "type":"", "currency":"", "amount":0, "from_currency":"", "from_amount":0, "fee_currency":"ALGO", "fee_amount": 0, "from":"", "to":"", "tx":"", "notes":""})
             elif check_asa_sell:
@@ -121,7 +121,7 @@ with open(filename, 'w') as f:
                 current_tx["from_amount"] = 0
                 current_tx["type"] = "Wallet Fee"
                 balance -= current_tx["fee_amount"]
-                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(current_tx["timestamp"]))
+                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(int(current_tx["timestamp"])))
                 print('"'+prettytime+'","'+current_tx["type"]+'","'+current_tx["currency"]+'",'+str(current_tx["amount"])+',"'+current_tx["from_currency"]+'",'+str(current_tx["from_amount"])+',"'+current_tx["fee_currency"]+'",'+str(current_tx["fee_amount"])+',"'+current_tx["from"]+'","'+current_tx["to"]+'","'+current_tx["tx"]+'","'+current_tx["notes"]+'"', file=f)
                 current_tx = copy.deepcopy({"timestamp":"", "type":"", "currency":"", "amount":0, "from_currency":"", "from_amount":0, "fee_currency":"ALGO", "fee_amount": 0, "from":"", "to":"", "tx":"", "notes":""})
 
