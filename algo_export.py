@@ -65,10 +65,15 @@ with open(filename, 'w') as f:
                 prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(int(current_tx["timestamp"])))
                 print('"'+prettytime+'","'+current_tx["type"]+'","'+current_tx["currency"]+'",'+str(current_tx["amount"])+',"'+current_tx["from_currency"]+'",'+str(current_tx["from_amount"])+',"'+current_tx["fee_currency"]+'",'+str(current_tx["fee_amount"])+',"'+current_tx["from"]+'","'+current_tx["to"]+'","'+current_tx["tx"]+'","'+current_tx["notes"]+'"', file=f)
             elif check_asa_buy:
-                print(" ")
-                print(current_tx)
-                print(" ")
-                print("Final transaction error - was checking for ASA buy - not sure what this is?")
+                # Transfer out of wallet
+                current_tx["type"] = "Transfer"
+                current_tx["currency"] = current_tx["from_currency"]
+                current_tx["amount"] = current_tx["from_amount"] + current_tx["fee_amount"]
+                current_tx["from_currency"] = ""
+                current_tx["from_amount"] = 0
+                balance -= current_tx["amount"]
+                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(int(current_tx["timestamp"])))
+                print('"'+prettytime+'","'+current_tx["type"]+'","'+current_tx["currency"]+'",'+str(current_tx["amount"])+',"'+current_tx["from_currency"]+'",'+str(current_tx["from_amount"])+',"'+current_tx["fee_currency"]+'",'+str(current_tx["fee_amount"])+',"'+current_tx["from"]+'","'+current_tx["to"]+'","'+current_tx["tx"]+'","'+current_tx["notes"]+'"', file=f)
             else:
                 # Just record it
                 balance -= current_tx["fee_amount"]
@@ -101,7 +106,6 @@ with open(filename, 'w') as f:
             elif check_asa_sell and row["type"]!="pay" and row["from"]==my_wallet:
                 # Delegation/Pool/Farm deposit - record - current row is another tx
                 check_asa_sell = False
-                current_tx["timestamp"] = row["timestamp"]
                 current_tx["currency"] = current_tx["from_currency"]
                 current_tx["amount"] = current_tx["from_amount"]
                 current_tx["from_currency"] = ""
@@ -114,7 +118,6 @@ with open(filename, 'w') as f:
             elif check_asa_sell:
                 # Unsubscribed - record - current row is another tx
                 check_asa_sell = False
-                current_tx["timestamp"] = row["timestamp"]
                 current_tx["currency"] = current_tx["from_currency"]
                 current_tx["amount"] = current_tx["from_amount"]
                 current_tx["from_currency"] = ""
@@ -140,6 +143,18 @@ with open(filename, 'w') as f:
                 current_tx["amount"] += current_tx["fee_amount"]
                 balance -= current_tx["from_amount"]
                 continue
+            elif check_asa_buy and current_tx["from_amount"]>0.002:
+                # Transfer out of wallet - current row is another tx
+                check_asa_buy = False
+                current_tx["type"] = "Transfer"
+                current_tx["currency"] = current_tx["from_currency"]
+                current_tx["amount"] = current_tx["from_amount"] + current_tx["fee_amount"]
+                current_tx["from_currency"] = ""
+                current_tx["from_amount"] = 0
+                balance -= current_tx["amount"]
+                prettytime = time.strftime("%d/%m/%Y %H:%M:%S", time.gmtime(int(current_tx["timestamp"])))
+                print('"'+prettytime+'","'+current_tx["type"]+'","'+current_tx["currency"]+'",'+str(current_tx["amount"])+',"'+current_tx["from_currency"]+'",'+str(current_tx["from_amount"])+',"'+current_tx["fee_currency"]+'",'+str(current_tx["fee_amount"])+',"'+current_tx["from"]+'","'+current_tx["to"]+'","'+current_tx["tx"]+'","'+current_tx["notes"]+'"', file=f)
+                current_tx = copy.deepcopy({"timestamp":"", "type":"", "currency":"", "amount":0, "from_currency":"", "from_amount":0, "fee_currency":"ALGO", "fee_amount": 0, "from":"", "to":"", "tx":"", "notes":""})
             elif check_asa_buy:
                 check_asa_buy = False
 
@@ -162,7 +177,8 @@ with open(filename, 'w') as f:
                         current_tx["type"] = "Buy"
                     balance += current_tx["amount"]-current_tx["fee_amount"]
                 elif row["from"] == my_wallet:
-                    # Payment sent - needs to be accumulated
+                    # Payment sent - needs to be accumulated - or it's a transfer out
+                    current_tx["timestamp"] = row["timestamp"]
                     current_tx["from_currency"] = "ALGO"
                     current_tx["from_amount"] += row["amount"]/1000000.000000
                     current_tx["from"] = row["from"]
